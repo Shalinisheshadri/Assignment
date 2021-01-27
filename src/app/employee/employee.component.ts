@@ -8,6 +8,9 @@ import { IEmployee } from '../models/Employee.Interface';
 export class EmployeeComponent implements OnInit {
 
   count : number = 0;
+  Textsearch: string = '';
+  AllEmployees: IEmployee[];
+
   selected:any ="Select department";
   filtered :any;
   Employee : IEmployee[] = [
@@ -49,9 +52,11 @@ export class EmployeeComponent implements OnInit {
     },
   ];
 
-  Departments = [ 'Computer', 'Physics', 'Chemistry'];
-  
-  constructor() { }
+  Departments = [ 'All','Computer', 'Physics', 'Chemistry'];
+ 
+  constructor() { 
+    this.AllEmployees = [...this.Employee]
+  }
 
   ngOnInit() {
     this.count = this.Employee.length;
@@ -68,7 +73,18 @@ export class EmployeeComponent implements OnInit {
   onOptionsSelected() {
     console.log(this.selected); 
     this.filtered = this.Employee.filter(t=>t.department ==this.selected);
+  }
 
-  } 
+  // Search functionality
+  searchtext(){
+    // alert("Search function called!...")
+    console.log("Searching..", this.Textsearch)
+    this.Employee = this.AllEmployees.filter((m) => m.name.toLocaleLowerCase().includes(this.Textsearch.toLocaleLowerCase()));
+  }
+
+  // refresh or reloading page
+  reloadPage() {
+    location.reload();
+ }
 
 }
