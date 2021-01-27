@@ -88,7 +88,6 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.count = this.Employee.length;
-    this.dataSource.sort = this.sort;
   }
 
   ngAfterViewInit() {

@@ -2,7 +2,7 @@
   <mat-card>
     <h2 id="header">Employee Details</h2>
     <div>
-      <label id="count">Total Number of Employees : {{this.count}}</label>
+      <label id="count"><b>Total Number of Employees :</b> {{this.count}}</label>
     </div>
     <div>
       <mat-grid-list cols="4" rowHeight="3:1">
@@ -42,7 +42,7 @@
       </mat-grid-list>
     </div>
 
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" matSortStart="asc">
 
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
