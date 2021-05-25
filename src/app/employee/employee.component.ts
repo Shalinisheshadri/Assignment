@@ -20,7 +20,7 @@ import {
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss']
 })
-export class EmployeeComponent implements OnInit, AfterViewInit {
+export class EmployeeComponent implements OnInit {
 
   count: number = 0;
   Textsearch: string = '';
@@ -72,9 +72,10 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     },
   ];
 
-  department: any[] = []; //= ['Computer', 'Physics', 'Chemistry', "Biology"];
+  department: any[] = [];
+  // isAscendic = true;
 
-  Sort: string[] = ['Ascending', 'Decensding'];
+  // Sort: string[] = ['Ascending', 'Decensding'];
 
   dataSource = new MatTableDataSource(this.Employee);
   displayedColumns: string[] = ['name', 'age', 'email', 'department'];
@@ -104,9 +105,9 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.sort = this.sort;
+  // }
 
   // Search functionality
   searchtext(event: Event) {
@@ -117,7 +118,9 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
 
   // refresh or reloading page
   reloadPage() {
-    location.reload();
+    //location.reload();
+    this.selected='';
+    this.Textsearch='';
   }
 
   //functionality to filter table data according to drop-down
@@ -128,5 +131,36 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
       this.dataSource.filter = this.search.trim().toLowerCase();
     }
   }
+
+  sorting() {
+    this.dataSource.sort = this.sort;
+    // this.isAscendic ? this.ascendic() : this.descendic();
+  }
+
+  // ascendic() {
+  //   this.isAscendic = false;
+  //   this.dataSource = this.dataSource.sort((n1, n2) => {
+  //     if (n1 < n2) {
+  //       return 1;
+  //     }
+  //     if (n1 > n2) {
+  //       return -1;
+  //     }
+  //     return 0;
+  //   });
+  // }
+
+  // descendic() {
+  //   this.isAscendic = true;
+  //   this.dataSource = this.dataSource.sort((n1, n2) => {
+  //     if (n1 > n2) {
+  //       return 1;
+  //     }
+  //     if (n1 < n2) {
+  //       return -1;
+  //     }
+  //     return 0;
+  //   });
+  // }
 
 }

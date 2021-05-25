@@ -10,7 +10,7 @@
         <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Select Department</mat-label>
-            <mat-select matNativeControl [(value)]="selected" placeholder="Select department">
+            <mat-select matNativeControl [(ngModel)]="selected" placeholder="Select department">
               <mat-option *ngFor="let department of department" [value]="department" (click)="applyFilter(department)">
                 {{department}}
               </mat-option>
@@ -31,13 +31,17 @@
         </mat-grid-tile>
 
         <mat-grid-tile>
+          <button mat-raised-button (click)="sorting()">sort</button>
+        </mat-grid-tile>
+        
+        <!-- <mat-grid-tile>
           <mat-form-field appearance="fill">
             <mat-label>Sort</mat-label>
             <mat-select matNativeControl id="sort" [(ngModel)]="selected">
               <mat-option *ngFor="let Sort of Sort" [value]="Sort">{{Sort}}</mat-option>
             </mat-select>
           </mat-form-field>
-        </mat-grid-tile>
+        </mat-grid-tile> -->
 
       </mat-grid-list>
     </div>
