@@ -20,7 +20,7 @@ import {
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss']
 })
-export class EmployeeComponent implements OnInit {
+export class EmployeeComponent implements OnInit,AfterViewInit {
 
   count: number = 0;
   Textsearch: string = '';
@@ -75,7 +75,7 @@ export class EmployeeComponent implements OnInit {
   department: any[] = [];
   // isAscendic = true;
 
-  // Sort: string[] = ['Ascending', 'Decensding'];
+   Sort: string[] = ['Ascending', 'Decensding'];
 
   dataSource = new MatTableDataSource(this.Employee);
   displayedColumns: string[] = ['name', 'age', 'email', 'department'];
@@ -105,9 +105,9 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  // ngAfterViewInit() {
-  //   this.dataSource.sort = this.sort;
-  // }
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
 
   // Search functionality
   searchtext(event: Event) {
@@ -116,11 +116,12 @@ export class EmployeeComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  // refresh or reloading page
-  reloadPage() {
+  // code to reset data
+  reset() {
     //location.reload();
     this.selected='';
     this.Textsearch='';
+    this.dataSource.filter = '';
   }
 
   //functionality to filter table data according to drop-down
