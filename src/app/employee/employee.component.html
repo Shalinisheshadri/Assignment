@@ -11,7 +11,7 @@
           <mat-form-field appearance="fill">
             <mat-label>Select Department</mat-label>
             <mat-select matNativeControl [(value)]="selected" placeholder="Select department">
-              <mat-option *ngFor="let department of Departments" [value]="department" (click)="applyFilter(department)">
+              <mat-option *ngFor="let department of department" [value]="department" (click)="applyFilter(department)">
                 {{department}}
               </mat-option>
             </mat-select>

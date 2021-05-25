@@ -32,7 +32,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
       name: "Aishwarya",
       age: 25,
       email: "Aishwarya@gmail.com",
-      department: ["Computer", "Physics"],
+      department: ["Computer", "Physics","Biology"],
     },
     {
       name: "Shalini",
@@ -72,7 +72,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
     },
   ];
 
-  Departments: string[] = ['Computer', 'Physics', 'Chemistry', "Biology"];
+  department: any[] = []; //= ['Computer', 'Physics', 'Chemistry', "Biology"];
 
   Sort: string[] = ['Ascending', 'Decensding'];
 
@@ -88,16 +88,24 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.count = this.Employee.length;
+
+    //unique department code
+    let dep=this.Employee.map((x)=>x.department);
+    console.log("dep", dep);
+
+    for(const da of dep){
+      for(const d of da){
+        if(this.department.indexOf(d) === -1){
+          console.log("unique departments:",d);
+          this.department.push(d);
+          console.log(this.department);
+        }
+      }
+    }
   }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
-  }
-
-  //to remove duplicates in drop-down
-  onOptionsSelected() {
-    console.log(this.selected);
-    this.filtered = this.Employee.filter(t => t.department == this.selected);
   }
 
   // Search functionality
